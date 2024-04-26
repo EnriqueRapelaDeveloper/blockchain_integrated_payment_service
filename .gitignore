@@ -5,3 +5,6 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+
+# Ignore folder from coverage
+/coverage
