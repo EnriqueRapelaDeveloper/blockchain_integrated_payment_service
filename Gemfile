@@ -46,6 +46,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'annotate'
   gem 'rspec-rails', '~> 6.1.0'
+  gem 'factory_bot_rails', '~> 6.1.0'
 end
 
 group :development do
