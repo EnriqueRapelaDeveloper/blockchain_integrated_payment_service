@@ -10,6 +10,8 @@
 
 * Simplecov
 
+* I18n
+
 ## Annotate gem
 
 Gem used to be able to write down all the attributes of a model in the file itself, with its characteristics. To run it you just have to run the following command: `bundle exec annotate`. But when you perform a migration it makes these notes automatically.
@@ -29,3 +31,7 @@ Factory Bot helps us generate models with test data without having to create the
 ## Simplecov
 
 Gem that allows us to see what percentage of code we have tested. Simply by running the tests as always, we will get the result in the end.
+
+## I18n
+
+The I18n library has been added, since it helps a lot with error control and handling it by code and for future translations if necessary.
