@@ -26,6 +26,9 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   before_create :generate_uuid
+  after_create :create_fee_configuration
+
+  has_one :fee_configuration
 
   def generate_uuid
     self.uuid = SecureRandom.uuid

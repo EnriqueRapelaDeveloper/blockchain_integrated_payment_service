@@ -19,10 +19,12 @@
 #  index_users_on_jti                   (jti) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-class UserSerializer
-  include JSONAPI::Serializer
-  set_id :uuid
-  attributes :email, :created_at
-
-  has_one :fee_configuration, serializer: FeeConfigurationSerializer, id_method_name: :uuid
+FactoryBot.define do
+  factory :fee_percentage do
+    payments { true }
+    payments_percentage { 1 }
+    trades { true }
+    trades_percentage { 1 }
+    user
+  end
 end

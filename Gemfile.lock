@@ -280,6 +280,7 @@ DEPENDENCIES
   devise-jwt
   dotenv-rails
   factory_bot_rails (~> 6.1.0)
+  i18n
   jsonapi-serializer
   pg (~> 1.1)
   puma (>= 5.0)
