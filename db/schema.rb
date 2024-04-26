@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_26_162014) do
   create_table "fiat_payments", force: :cascade do |t|
     t.string "uuid", null: false
     t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "USD", null: false
+    t.string "amount_currency", default: "EUR", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
