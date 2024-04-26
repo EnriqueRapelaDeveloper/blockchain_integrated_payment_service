@@ -29,6 +29,7 @@ class User < ApplicationRecord
   after_create :create_fee_configuration
 
   has_one :fee_configuration
+  has_many :fiat_payments
 
   def generate_uuid
     self.uuid = SecureRandom.uuid
