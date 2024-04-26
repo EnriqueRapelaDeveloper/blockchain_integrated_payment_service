@@ -34,4 +34,7 @@ en:
       invalid_record:
         title: This record does not meet the necessary requirements to be saved
         suggestion: Please check the documentation and enter the correct parameters
+      unauthorized:
+        title: Authentication is required to access this resource
+        suggestion: Please check that the credentials are correct
 

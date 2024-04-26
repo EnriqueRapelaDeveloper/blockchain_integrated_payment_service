@@ -13,7 +13,7 @@ class Users::SessionsController < Devise::SessionsController
         data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
       }, status: :ok
     else
-      render json: { status: 401, message: 'Incorrect credentials' }, status: :unauthorized
+      print_error('unauthorized', 'Incorrect credentials', 401)
     end
   end
 
@@ -24,10 +24,7 @@ class Users::SessionsController < Devise::SessionsController
         message: "logged out successfully"
       }, status: :ok
     else
-      render json: {
-        status: 401,
-        message: "Couldn't find an active session."
-      }, status: :unauthorized
+      print_error('unauthorized', 'Incorrect credentials', 401)
     end
   end
 end
