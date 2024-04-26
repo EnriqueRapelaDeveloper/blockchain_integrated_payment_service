@@ -24,5 +24,5 @@ class UserSerializer
   set_id :uuid
   attributes :email, :created_at
 
-  has_one :fee_configuration, serializer: FeeConfigurationSerializer
+  has_one :fee_configuration, serializer: FeeConfigurationSerializer, id_method_name: :uuid
 end
