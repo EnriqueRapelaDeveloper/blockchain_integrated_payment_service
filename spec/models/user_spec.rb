@@ -51,4 +51,16 @@ RSpec.describe User, type: :model do
       expect(@user.uuid).not_to be_empty
     end
   end
+
+  context 'after_create actions' do
+    before do
+      @user = User.new(email: 'test@test.com', password: '123456')
+    end
+
+    it 'when create the user, the model generate a uuid' do
+      @user.save
+
+      expect(@user.fee_configuration).to eq FeeConfiguration.last
+    end
+  end
 end
