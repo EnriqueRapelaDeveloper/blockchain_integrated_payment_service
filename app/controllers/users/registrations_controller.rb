@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include RackSessionFix
   respond_to :json
 
+  # POST /api/v1/signup
   def create
     ActiveRecord::Base.transaction do
       super

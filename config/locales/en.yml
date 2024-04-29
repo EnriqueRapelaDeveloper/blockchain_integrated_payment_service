@@ -37,4 +37,7 @@ en:
       unauthorized:
         title: Authentication is required to access this resource
         suggestion: Please check that the credentials are correct
+      record_not_found:
+        title: 'The resource with the following identified: %{value} has not been found'
+        suggestion: Please make sure you are entering the correct identifier
 
