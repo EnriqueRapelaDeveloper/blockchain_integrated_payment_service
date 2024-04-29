@@ -21,6 +21,7 @@ class FiatPayment < ApplicationRecord
 
   before_create :generate_uid
   before_create :charged_fee
+  after_create :execute_trade
 
   monetize :amount_cents, numericality: {
                             greater_than_or_equal_to: 0,
@@ -39,5 +40,9 @@ class FiatPayment < ApplicationRecord
     return unless user.fee_configuration.payments
 
     self.amount_cents = amount_cents - fee_amount_cents
+  end
+
+  def execute_trade
+    TradeService.new(user, amount_cents, amount_currency).execute
   end
 end
