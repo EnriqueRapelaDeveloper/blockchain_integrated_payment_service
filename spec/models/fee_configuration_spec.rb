@@ -26,7 +26,7 @@ RSpec.describe FeeConfiguration, type: :model do
       expect(fee_configuration).to_not be_valid
     end
 
-    it "is not valid with trades percentage greater than 0" do
+    it "is not valid with trades percentage greater than 100" do
       fee_configuration = FeeConfiguration.new(user_id: user.id, trades: true, trades_percentage: 110)
       expect(fee_configuration).to_not be_valid
     end
