@@ -32,6 +32,10 @@ class TradeService
     # Mock API call to realize the exchange
     exchange_rate = 1.20 # EUR/USDT
     currency = 'USDT'
+    # In this Raise, the parameters sent to the trade API could be passed,
+    # and the entire error with the parameters and the response logged in the logger file.
+    # raise TradeError.new('conversion_error', 'An error occurred while converting.') # Uncomment this for raise a exception in get to exchange rate
+
     [@trade.original_amount_cents * exchange_rate, currency]
   end
 
