@@ -2,13 +2,13 @@
 #
 # Table name: blockchain_payments
 #
-#  id         :bigint           not null, primary key
-#  amount     :float
-#  currency   :string
-#  uuid       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id              :bigint           not null, primary key
+#  amount_cents    :integer          default(0), not null
+#  amount_currency :string           default("USD"), not null
+#  uuid            :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #
@@ -20,6 +20,11 @@ class BlockchainPayment < ApplicationRecord
   has_one :fee, as: :transactionable
 
   before_create :generate_uid
+
+  monetize :amount_cents, numericality: {
+                            greater_than_or_equal_to: 0,
+                            less_than_or_equal_to: 10000
+                          }
 
   def generate_uid
     self.uuid = SecureRandom.uuid

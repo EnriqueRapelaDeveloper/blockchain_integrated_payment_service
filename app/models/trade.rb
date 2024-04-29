@@ -22,6 +22,7 @@ class Trade < ApplicationRecord
   has_one :fee, as: :transactionable
 
   before_create :generate_uid
+  after_create :execute_blockchain_payment
 
   monetize :original_amount_cents, numericality: {
                                      greater_than_or_equal_to: 0,
@@ -35,5 +36,9 @@ class Trade < ApplicationRecord
 
   def generate_uid
     self.uuid = SecureRandom.uuid
+  end
+
+  def execute_blockchain_payment
+    BlockchainService.new(user, final_amount_cents, final_amount_currency).execute
   end
 end
