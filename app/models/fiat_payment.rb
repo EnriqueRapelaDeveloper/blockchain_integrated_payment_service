@@ -17,7 +17,10 @@
 class FiatPayment < ApplicationRecord
   belongs_to :user
 
+  has_one :fee, as: :transactionable
+
   before_create :generate_uid
+  before_create :charged_fee
 
   monetize :amount_cents, numericality: {
                             greater_than_or_equal_to: 0,
@@ -26,5 +29,15 @@ class FiatPayment < ApplicationRecord
 
   def generate_uid
     self.uuid = SecureRandom.uuid
+  end
+
+  def charged_fee
+    fee_service = FeeService.new(self, user.fee_configuration)
+    fee_amount_cents = fee_service.get_fees(amount_cents)
+    fee_service.collect(amount_cents, amount_currency)
+
+    return unless user.fee_configuration.payments
+
+    self.amount_cents = amount_cents - fee_amount_cents
   end
 end
