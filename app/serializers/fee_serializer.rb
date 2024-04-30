@@ -11,10 +11,16 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  transactionable_id   :bigint           not null
+#  user_id              :bigint           not null
 #
 # Indexes
 #
 #  index_fees_on_transactionable  (transactionable_type,transactionable_id)
+#  index_fees_on_user_id          (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 class FeeSerializer
   include JSONAPI::Serializer
