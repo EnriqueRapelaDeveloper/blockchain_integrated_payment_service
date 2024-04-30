@@ -18,4 +18,5 @@ class FiatPaymentSerializer
   include JSONAPI::Serializer
   set_id :uuid
   attributes :amount_cents, :amount_currency, :created_at
+  has_one :fee, serializer: FeeSerializer, id_method_name: :uuid
 end

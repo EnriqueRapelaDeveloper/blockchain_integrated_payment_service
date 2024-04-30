@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_26_162014) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_30_111519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blockchain_payments", force: :cascade do |t|
+    t.string "uuid", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "amount_cents"
+    t.string "amount_currency"
+    t.index ["user_id"], name: "index_blockchain_payments_on_user_id"
+  end
 
   create_table "fee_configurations", force: :cascade do |t|
     t.string "uuid", null: false
@@ -26,6 +36,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_26_162014) do
     t.index ["user_id"], name: "index_fee_configurations_on_user_id"
   end
 
+  create_table "fees", force: :cascade do |t|
+    t.string "uuid", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
+    t.string "transactionable_type", null: false
+    t.bigint "transactionable_id", null: false
+    t.boolean "paid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transactionable_type", "transactionable_id"], name: "index_fees_on_transactionable"
+  end
+
   create_table "fiat_payments", force: :cascade do |t|
     t.string "uuid", null: false
     t.integer "amount_cents", default: 0, null: false
@@ -34,6 +56,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_26_162014) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_fiat_payments_on_user_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.string "uuid", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "original_amount_cents"
+    t.string "original_amount_currency"
+    t.bigint "final_amount_cents"
+    t.string "final_amount_currency"
+    t.index ["user_id"], name: "index_trades_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

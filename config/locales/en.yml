@@ -40,4 +40,7 @@ en:
       record_not_found:
         title: 'The resource with the following identified: %{value} has not been found'
         suggestion: Please make sure you are entering the correct identifier
+      conversion_error:
+        title: An error occurred while performing the conversion trade.
+        suggestion: Wait a few minutes and try again later. If the error continues, contact the support team.
 
