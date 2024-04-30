@@ -3,10 +3,10 @@ class BlockchainService
     @user = user
     @amount_cents = amount_cents
     @amount_currency = amount_currency
+    @blockchain_payment = initialize_blockchain_payment
   end
 
   def execute
-    @blockchain_payment = initialize_blockchain_payment
     calculate_fee
 
     @blockchain_payment.save

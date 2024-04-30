@@ -3,10 +3,10 @@ class TradeService
     @user = user
     @amount_cents = amount_cents
     @amount_currency = amount_currency
+    @trade = initialize_trade
   end
 
   def execute
-    @trade = initialize_trade
     calculate_fee
     final_amount_cents, final_amount_currency = calculate_conversion
     update_trade(final_amount_cents, final_amount_currency)
