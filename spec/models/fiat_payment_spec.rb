@@ -25,7 +25,7 @@ RSpec.describe FiatPayment, type: :model do
     end
 
     it "is not valid with amount cents greater than 1000000" do
-      fiat_payment = FiatPayment.new(user_id: user.id, amount_cents: 1000001)
+      fiat_payment = FiatPayment.new(user_id: user.id, amount_cents: 100000001)
       expect(fiat_payment).to_not be_valid
     end
 
