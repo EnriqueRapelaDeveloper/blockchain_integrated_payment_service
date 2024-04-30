@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_122246) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_30_111519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blockchain_payments", force: :cascade do |t|
     t.string "uuid", null: false
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "USD", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "amount_cents"
+    t.string "amount_currency"
     t.index ["user_id"], name: "index_blockchain_payments_on_user_id"
   end
 
@@ -60,13 +60,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_122246) do
 
   create_table "trades", force: :cascade do |t|
     t.string "uuid", null: false
-    t.integer "original_amount_cents", default: 0, null: false
-    t.string "original_amount_currency", default: "USD", null: false
-    t.integer "final_amount_cents", default: 0, null: false
-    t.string "final_amount_currency", default: "USD", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "original_amount_cents"
+    t.string "original_amount_currency"
+    t.float "final_amount_cents"
+    t.string "final_amount_currency"
     t.index ["user_id"], name: "index_trades_on_user_id"
   end
 

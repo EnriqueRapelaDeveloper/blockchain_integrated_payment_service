@@ -3,8 +3,8 @@
 # Table name: blockchain_payments
 #
 #  id              :bigint           not null, primary key
-#  amount_cents    :integer          default(0), not null
-#  amount_currency :string           default("USD"), not null
+#  amount_cents    :float
+#  amount_currency :string
 #  uuid            :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -21,7 +21,7 @@ class BlockchainPayment < ApplicationRecord
 
   before_create :generate_uid
 
-  monetize :amount_cents, numericality: {
+  validates :amount_cents, numericality: {
                             greater_than_or_equal_to: 0,
                             less_than_or_equal_to: 10000
                           }

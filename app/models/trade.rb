@@ -3,10 +3,10 @@
 # Table name: trades
 #
 #  id                       :bigint           not null, primary key
-#  final_amount_cents       :integer          default(0), not null
-#  final_amount_currency    :string           default("USD"), not null
-#  original_amount_cents    :integer          default(0), not null
-#  original_amount_currency :string           default("USD"), not null
+#  final_amount_cents       :float
+#  final_amount_currency    :string
+#  original_amount_cents    :float
+#  original_amount_currency :string
 #  uuid                     :string           not null
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
@@ -24,12 +24,12 @@ class Trade < ApplicationRecord
   before_create :generate_uid
   after_create :execute_blockchain_payment
 
-  monetize :original_amount_cents, numericality: {
+  validates :original_amount_cents, numericality: {
                                      greater_than_or_equal_to: 0,
                                      less_than_or_equal_to: 10000
                                    }
 
-  monetize :final_amount_cents, numericality: {
+  validates :final_amount_cents, numericality: {
                                   greater_than_or_equal_to: 0,
                                   less_than_or_equal_to: 10000
                                 }
