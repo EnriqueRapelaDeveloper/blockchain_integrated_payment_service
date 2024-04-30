@@ -35,6 +35,6 @@ class FeeService
 
   def create_fee(kind, fee_amount_cents, currency)
     paid = @fee_configuration.send(kind)
-    @resource.build_fee(amount_cents: fee_amount_cents, amount_currency: currency, paid: paid)
+    @resource.build_fee(amount_cents: fee_amount_cents, amount_currency: currency, paid: paid, user_id: @resource.user_id)
   end
 end

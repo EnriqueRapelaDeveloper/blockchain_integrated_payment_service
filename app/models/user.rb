@@ -32,8 +32,13 @@ class User < ApplicationRecord
   has_many :fiat_payments
   has_many :trades
   has_many :blockchain_payments
+  has_many :fees
 
   def generate_uuid
     self.uuid = SecureRandom.uuid
+  end
+
+  def monthly_rate_summary
+    SummaryService.new(self).monthly_rates
   end
 end
