@@ -24,16 +24,6 @@ class Trade < ApplicationRecord
   before_create :generate_uid
   after_create :execute_blockchain_payment
 
-  validates :original_amount_cents, numericality: {
-                                     greater_than_or_equal_to: 0,
-                                     less_than_or_equal_to: 100000000
-                                   }
-
-  validates :final_amount_cents, numericality: {
-                                  greater_than_or_equal_to: 0,
-                                  less_than_or_equal_to: 100000000
-                                }
-
   def generate_uid
     self.uuid = SecureRandom.uuid
   end

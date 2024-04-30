@@ -21,11 +21,6 @@ class BlockchainPayment < ApplicationRecord
 
   before_create :generate_uid
 
-  validates :amount_cents, numericality: {
-                            greater_than_or_equal_to: 0,
-                            less_than_or_equal_to: 100000000
-                          }
-
   def generate_uid
     self.uuid = SecureRandom.uuid
   end
