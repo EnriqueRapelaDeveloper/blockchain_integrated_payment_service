@@ -5,14 +5,16 @@ module ApiErrorHandler
     render json: {
       status: 'error',
       status_code: status,
-      error: {
+      errors: [
+        {
         code: error_code,
         message: I18n.t("api.errors.#{error_code}.title", value: value),
         details: details,
         path: request.path,
         timestamp: Time.now,
         suggestion: I18n.t("api.errors.#{error_code}.suggestion"),
-      }
+        }
+      ]
     }, status: status
   end
 
@@ -22,7 +24,8 @@ module ApiErrorHandler
     errors.each do |error|
       error_response[:errors].push({
         code: error_code,
-        message: error.full_message,
+        message: I18n.t("api.errors.#{error_code}.title", value: value),
+        details: error.full_message,
         path: request.path,
         timestamp: Time.now,
         suggestion: I18n.t("api.errors.#{error_code}.suggestion")
