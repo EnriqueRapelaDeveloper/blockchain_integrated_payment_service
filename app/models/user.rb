@@ -30,6 +30,8 @@ class User < ApplicationRecord
 
   has_one :fee_configuration
   has_many :fiat_payments
+  has_many :trades
+  has_many :blockchain_payments
 
   def generate_uuid
     self.uuid = SecureRandom.uuid

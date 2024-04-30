@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_111519) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "amount_cents"
+    t.bigint "amount_cents"
     t.string "amount_currency"
     t.index ["user_id"], name: "index_blockchain_payments_on_user_id"
   end
@@ -63,9 +63,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_111519) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "original_amount_cents"
+    t.bigint "original_amount_cents"
     t.string "original_amount_currency"
-    t.float "final_amount_cents"
+    t.bigint "final_amount_cents"
     t.string "final_amount_currency"
     t.index ["user_id"], name: "index_trades_on_user_id"
   end

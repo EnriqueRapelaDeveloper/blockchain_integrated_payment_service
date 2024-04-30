@@ -25,7 +25,7 @@ class FiatPayment < ApplicationRecord
 
   monetize :amount_cents, numericality: {
                             greater_than_or_equal_to: 0,
-                            less_than_or_equal_to: 10000
+                            less_than_or_equal_to: 100000000
                           }
 
   def generate_uid

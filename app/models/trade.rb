@@ -3,9 +3,9 @@
 # Table name: trades
 #
 #  id                       :bigint           not null, primary key
-#  final_amount_cents       :float
+#  final_amount_cents       :bigint
 #  final_amount_currency    :string
-#  original_amount_cents    :float
+#  original_amount_cents    :bigint
 #  original_amount_currency :string
 #  uuid                     :string           not null
 #  created_at               :datetime         not null
@@ -26,12 +26,12 @@ class Trade < ApplicationRecord
 
   validates :original_amount_cents, numericality: {
                                      greater_than_or_equal_to: 0,
-                                     less_than_or_equal_to: 10000
+                                     less_than_or_equal_to: 100000000
                                    }
 
   validates :final_amount_cents, numericality: {
                                   greater_than_or_equal_to: 0,
-                                  less_than_or_equal_to: 10000
+                                  less_than_or_equal_to: 100000000
                                 }
 
   def generate_uid

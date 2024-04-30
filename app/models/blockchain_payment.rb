@@ -3,7 +3,7 @@
 # Table name: blockchain_payments
 #
 #  id              :bigint           not null, primary key
-#  amount_cents    :float
+#  amount_cents    :bigint
 #  amount_currency :string
 #  uuid            :string           not null
 #  created_at      :datetime         not null
@@ -23,7 +23,7 @@ class BlockchainPayment < ApplicationRecord
 
   validates :amount_cents, numericality: {
                             greater_than_or_equal_to: 0,
-                            less_than_or_equal_to: 10000
+                            less_than_or_equal_to: 100000000
                           }
 
   def generate_uid
